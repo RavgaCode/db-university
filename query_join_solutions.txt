@@ -70,16 +70,3 @@ ON `degrees`.`department_id` = `departments`.`id`
 WHERE `departments`.`name` = 'Dipartimento di Matematica';
 
 
-7. Selezionare il voto medio di superamento d'esame per ogni corso, 
-con anche i dati del corso di laurea associato, ordinati per media voto decrescente
-
-SELECT `exam_student`.`exam_id`, `courses`.`name` AS `course_name`, COUNT(`exam_student`.`vote`) AS `numero_tentativi`
-FROM `exam_student`
-JOIN `exams`
-ON `exam_student`.`exam_id` = `exams`.`id`
-JOIN `courses`
-ON `exams`.`course_id` = `courses`.`id`
-JOIN `degrees`
-ON `courses`.`degree_id` = `degrees`.`id`
-WHERE `exam_student`.`vote` < 18
-GROUP BY `students`.`name`
